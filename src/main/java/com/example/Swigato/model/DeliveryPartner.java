@@ -26,7 +26,7 @@ public class DeliveryPartner {
 
     @Column(unique = true, nullable = false)
     @Size(min = 10, max = 10)
-    String mobNo;
+    String mobileNo;
 
     @Enumerated(EnumType.STRING)
     Gender gender;
