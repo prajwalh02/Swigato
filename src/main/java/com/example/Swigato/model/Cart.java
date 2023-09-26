@@ -20,7 +20,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    int cardTotal;
+    double cardTotal;
 
     @OneToOne
     @JoinColumn

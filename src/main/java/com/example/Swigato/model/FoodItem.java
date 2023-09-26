@@ -1,6 +1,5 @@
 package com.example.Swigato.model;
 
-import com.example.Swigato.enums.FoodCategory;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -18,16 +17,9 @@ public class FoodItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String dishName;
+    int requiredQuantity;
 
-    double price;
-
-    @Enumerated(EnumType.STRING)
-    FoodCategory foodCategory;
-
-    boolean veg;
-
-    boolean available;
+    double totalCost;
 
     @ManyToOne
     @JoinColumn
@@ -35,11 +27,12 @@ public class FoodItem {
 
     @ManyToOne
     @JoinColumn
-    OrderEntity orderEntity;
+    MenuItem menuItem;
 
     @ManyToOne
     @JoinColumn
-    Restaurant restaurant;
+    OrderEntity order;
+
 
 
 

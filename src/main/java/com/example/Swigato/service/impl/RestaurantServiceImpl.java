@@ -1,10 +1,10 @@
 package com.example.Swigato.service.impl;
 
-import com.example.Swigato.dto.requestdto.FoodRequest;
+import com.example.Swigato.dto.requestdto.MenuRequest;
 import com.example.Swigato.dto.requestdto.RestaurantRequest;
 import com.example.Swigato.dto.responsedto.RestaurantResponse;
 import com.example.Swigato.exception.RestaurantNotFoundException;
-import com.example.Swigato.model.FoodItem;
+import com.example.Swigato.model.MenuItem;
 import com.example.Swigato.model.Restaurant;
 import com.example.Swigato.repository.RestaurantRepository;
 import com.example.Swigato.service.RestaurantService;
@@ -12,8 +12,6 @@ import com.example.Swigato.transformer.FoodTransformer;
 import com.example.Swigato.transformer.RestaurantTransformer;
 import com.example.Swigato.utils.ValidationUtils;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class RestaurantServiceImpl implements RestaurantService {
@@ -68,20 +66,20 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public RestaurantResponse addFoodItemToRestaurant(FoodRequest foodRequest) {
+    public RestaurantResponse addMenuItemToRestaurant(MenuRequest menuRequest) {
 
         // check restaurant is valid or not
-        if(!validationUtils.validateRestaurantId(foodRequest.getRestaurantId())) {
+        if(!validationUtils.validateRestaurantId(menuRequest.getRestaurantId())) {
             throw new RestaurantNotFoundException("Restaurant doesn't exist!!!");
         }
 
-        Restaurant restaurant = restaurantRepository.findById(foodRequest.getRestaurantId()).get();
+        Restaurant restaurant = restaurantRepository.findById(menuRequest.getRestaurantId()).get();
 
         //make food entity
-        FoodItem foodItem = FoodTransformer.FoodRequestToFoodItem(foodRequest);
-        foodItem.setRestaurant(restaurant);
+        MenuItem menuItem = FoodTransformer.FoodRequestToFoodItem(menuRequest);
+        menuItem.setRestaurant(restaurant);
 
-        restaurant.getAvailableFoodItems().add(foodItem);
+        restaurant.getAvailableMenuItems().add(menuItem);
 
         // save restaurant and food
         Restaurant savedRestaurant = restaurantRepository.save(restaurant);

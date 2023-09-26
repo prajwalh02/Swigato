@@ -1,12 +1,11 @@
 package com.example.Swigato.model;
 
+import com.example.Swigato.enums.FoodCategory;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -15,33 +14,30 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "order_entity")
-public class OrderEntity {
+@Table(name = "menu_item")
+public class MenuItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
 
-    String orderId;      //UUID
+    String dishName;
 
-    int orderTotal;
+    double price;
 
-    @CreationTimestamp
-    Date orderTime;
+    @Enumerated(EnumType.STRING)
+    FoodCategory foodCategory;
 
-    @ManyToOne
-    @JoinColumn
-    Customer customer;
+    boolean veg;
 
-    @ManyToOne
-    @JoinColumn
-    DeliveryPartner deliveryPartner;
+    boolean available;
 
     @ManyToOne
     @JoinColumn
     Restaurant restaurant;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "menuItem", cascade = CascadeType.ALL)
     List<FoodItem> foodItems = new ArrayList<>();
+
 
 }
