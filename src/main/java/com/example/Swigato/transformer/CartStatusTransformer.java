@@ -7,15 +7,6 @@ import com.example.Swigato.model.FoodItem;
 
 public class CartStatusTransformer {
 
-    public static FoodResponse FoodItemToFoodResponse(FoodItem foodItem) {
-        return FoodResponse.builder()
-                .dishName(foodItem.getMenuItem().getDishName())
-                .price(foodItem.getMenuItem().getPrice())
-                .foodCategory(foodItem.getMenuItem().getFoodCategory())
-                .veg(foodItem.getMenuItem().isVeg())
-                .quantityAdded(foodItem.getRequiredQuantity())
-                .build();
-    }
 
     public static CartStatusResponse CartToCartStatusResponse(Cart cart) {
         return CartStatusResponse.builder()

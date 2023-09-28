@@ -26,4 +26,8 @@ public class DeliveryPartnerController {
         String message = deliveryPartnerService.addDeliveryPartner(deliveryPartnerRequest);
         return new ResponseEntity(message, HttpStatus.CREATED);
     }
+
+    // get delivery partner with highest number of deliveries
+
+    // send an email to all the partners who have done less than 10 deliveries.
 }

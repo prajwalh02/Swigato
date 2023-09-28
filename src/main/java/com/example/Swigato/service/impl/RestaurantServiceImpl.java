@@ -8,7 +8,7 @@ import com.example.Swigato.model.MenuItem;
 import com.example.Swigato.model.Restaurant;
 import com.example.Swigato.repository.RestaurantRepository;
 import com.example.Swigato.service.RestaurantService;
-import com.example.Swigato.transformer.FoodTransformer;
+import com.example.Swigato.transformer.MenuItemTransformer;
 import com.example.Swigato.transformer.RestaurantTransformer;
 import com.example.Swigato.utils.ValidationUtils;
 import org.springframework.stereotype.Service;
@@ -76,7 +76,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         Restaurant restaurant = restaurantRepository.findById(menuRequest.getRestaurantId()).get();
 
         //make food entity
-        MenuItem menuItem = FoodTransformer.FoodRequestToFoodItem(menuRequest);
+        MenuItem menuItem = MenuItemTransformer.MenuRequestToMenuItem(menuRequest);
         menuItem.setRestaurant(restaurant);
 
         restaurant.getAvailableMenuItems().add(menuItem);
